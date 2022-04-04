@@ -25,6 +25,10 @@ namespace INTEX.Controllers
         {
             return View();
         }
+        public IActionResult Prevention()
+        {
+            return View();
+        }
 
         public IActionResult Crashes(int page = 1, string date = "", string time = "", string city = " ", string county="", int severity = -1)
         {
