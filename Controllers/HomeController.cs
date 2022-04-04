@@ -1,4 +1,5 @@
 ﻿
+using INTEX.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,17 @@ namespace INTEX.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private DBContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DBContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            ViewBag.crashes = _context.utah_crash_data.ToList();
             return View();
         }
 
