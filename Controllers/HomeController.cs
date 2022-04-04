@@ -23,6 +23,11 @@ namespace INTEX.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
        
     }
 }
