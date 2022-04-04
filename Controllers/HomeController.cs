@@ -23,7 +23,7 @@ namespace INTEX.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.crashes = _context.utah_crash_data.ToList();
+            ViewBag.crashes = _context.crashes.ToList();
             return View();
         }
 

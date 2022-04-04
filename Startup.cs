@@ -2,6 +2,7 @@ using INTEX.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +27,7 @@ namespace INTEX
         {
             services.AddControllersWithViews();
             services.AddDbContext<DBContext>(options => {
-                options.UseMySql(Configuration.GetConnectionString("BowlingDB"));
+                options.UseMySql(Configuration.GetConnectionString("CrashDB"));
             });
         }
 

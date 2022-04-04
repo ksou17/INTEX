@@ -12,6 +12,6 @@ namespace INTEX.Models
         {
         }
 
-        public DbSet<utah_crash_data> utah_crash_data { get; set; }
+        public DbSet<Crash> crashes { get; set; }
     }
 }

@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace INTEX.Models
 {
-    public class utah_crash_data
+    public class Crash
     {
         [Key]
         [Required]
         public int CRASH_ID { get; set; }
-        public DateTime CRASH_DATETIME { get; set; }
-        public int ROUTE { get; set; }
-        public int MILEPOINT { get; set; }
+        public string CRASH_DATETIME { get; set; }
+        public string ROUTE { get; set; }
+        public double MILEPOINT { get; set; }
         public string LAT_UTM_Y { get; set; }
         public string LONG_UTM_X { get; set; }
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
         public int CRASH_SEVERITY_ID { get; set; }
-        public bool WORK_ZONE_RELATED { get; set; }
+        public string WORK_ZONE_RELATED { get; set; }
         public bool PEDESTRIAN_INVOLVED { get; set; }
         public bool BICYCLIST_INVOLVED { get; set; }
         public bool MOTORCYCLE_INVOLVED { get; set; }
@@ -38,5 +39,9 @@ namespace INTEX.Models
         public bool DISTRACTED_DRIVING { get; set; }
         public bool DROWSY_DRIVING { get; set; }
         public bool ROADWAY_DEPARTURE { get; set; }
+        [NotMapped]
+        public DateTime CRASH_DATE => DateTime.Parse(CRASH_DATETIME);
+        [NotMapped]
+        public bool WORK_ZONE_BOOL => WORK_ZONE_RELATED == "TRUE" ? true : false;
     }
 }
