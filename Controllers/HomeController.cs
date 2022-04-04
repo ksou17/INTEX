@@ -22,6 +22,10 @@ namespace INTEX.Controllers
         {
             return View();
         }
+        public IActionResult Prevention()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {
