@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="main-container">
+    <h3 class="text-center">Filter Crashes</h3>
+    <form method="get" asp-controller="Home" asp-action="Crashes" class="filter-whole-form" id="crash-filter-form">
+        <div class="filter-form">
+            <input type="hidden" name="page" id="pageNumber"/>
+            <input placeholder="Date" type="date" name="date" />
+            <input placeholder="Time" />
+            <select name="city">
+                <option selected value="">-- Select A City --</option>
+                @foreach (var city in ViewBag.cities)
+                {
+                    if (city == ViewBag.selectedCity)
+                    {
+                        <option selected value="@city">@city</option>
+                    }
+                    else
+                    {
+                        <option value="@city">@city</option>
+                    }
+                }
+            </select>
+            <select name="county">
+                <option selected value="">-- Select A County --</option>
+                @foreach (var county in ViewBag.counties)
+                {
+                    if (county == ViewBag.selectedCounty)
+                    {
+                        <option value="@county" selected>@county</option>
+                    }
+                    else
+                    {
+                        <option value="@county">@county</option>
+                    }
+                }
+            </select>
+            <select name="severity">
+                <option selected value="">Severity</option>
+                @foreach (var severity in ViewBag.severity)
+                {
+                    if (severity == ViewBag.selectedSeverity)
+                    {
+                        <option selected value="@severity">@severity</option>
+                    }
+                    else
+                    {
+                        <option value="@severity">@severity</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="text-center mt-2">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        </div>
+    </form>
+    <div>
+        <table class="table table-striped-custom table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Crash Date</th>
+                    <th>Crash Time</th>
+                    <th>City</th>
+                    <th>County</th>
+                    <th>Severity ID</th>
+                    <th>View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var crash in ViewBag.crashes)
+                {
+                    <tr>
+                        <td>@crash.CRASH_DATE.ToShortDateString()</td>
+                        <td>@crash.CRASH_DATE.ToString("hh:mm tt")</td>
+                        <td>@crash.CITY</td>
+                        <td>@crash.COUNTY_NAME</td>
+                        <td>@crash.CRASH_SEVERITY_ID</td>
+                        <td><button class="btn btn-primary btn-no-margin" onclick="revealRow(@crash.CRASH_ID);">Details</button></td>
+                    </tr>
+                    <tr hidden id="hiddenRow@(crash.CRASH_ID)">
+                        <td colspan="6">
+                            editstuffs
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="larger-pagination"><a onclick="pageBackwards(@ViewBag.page);">⬅</a>@ViewBag.page of @ViewBag.totalPages<a onclick="pageForward(@ViewBag.page);">➡</a></div>
+</div>
