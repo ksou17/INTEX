@@ -81,7 +81,7 @@ namespace INTEX.Controllers
             ViewBag.severity = _context.crashes.Select(c => c.CRASH_SEVERITY_ID).Distinct();
             ViewBag.page = page;
             ViewBag.totalPages = (crashes.ToList().Count()) / 10 != 0 ? (crashes.ToList().Count()) / 10 : 1;
-            ViewBag.selectedCity = city;
+            ViewBag.selectedCity = city ?? " ";
             ViewBag.selectedCounty = county;
             ViewBag.selectedSeverity = severity;
             return View();
