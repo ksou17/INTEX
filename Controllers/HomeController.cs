@@ -30,9 +30,7 @@ namespace INTEX.Controllers
             int total_WZR = 0;
             foreach (var w in ViewBag.TableInfo)
             {
-               
-
-                if (w.WORK_ZONE_RELATED == 1)
+                if (w.WORK_ZONE_BOOL == true)
                 {
 
                     total_WZR += 1;
