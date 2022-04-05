@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
 <!DOCTYPE html>
 <link href="~/css/site.css" rel="stylesheet" />
 <script src="~/js/site.js"></script>
@@ -28,17 +30,30 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-
-
-
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Crashes">Crashes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Prevention">Crash Prevention</a>
+                    </li>
                 </ul>
 
             </div>
-            <a class="btn btn-secondary float-right" asp-action="Login">Login</a>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-secondary float-right" href="/account/logout">Log Out</a>
+
+                    }
+            else
+            {
+                 <a class="btn btn-secondary float-right" asp-controller="Account" asp-action="Login">Login</a>
+            }
+            
         </nav>
     </header>
-        
-    
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -47,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - BowlingLeague - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - UtahCrashSummary - <a asp-area="" asp-controller="Home" asp-action="Crashes">Crashes</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

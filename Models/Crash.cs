@@ -12,6 +12,7 @@ namespace INTEX.Models
         [Key]
         [Required]
         public int CRASH_ID { get; set; }
+        [Required]
         public string CRASH_DATETIME { get; set; }
         public string ROUTE { get; set; }
         public double MILEPOINT { get; set; }
@@ -20,7 +21,6 @@ namespace INTEX.Models
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
         public int CRASH_SEVERITY_ID { get; set; }
-        public string WORK_ZONE_RELATED { get; set; }
         public bool PEDESTRIAN_INVOLVED { get; set; }
         public bool BICYCLIST_INVOLVED { get; set; }
         public bool MOTORCYCLE_INVOLVED { get; set; }
@@ -42,7 +42,22 @@ namespace INTEX.Models
         [NotMapped]
         public DateTime CRASH_DATE => DateTime.Parse(CRASH_DATETIME);
         [NotMapped]
-        public bool WORK_ZONE_BOOL => WORK_ZONE_RELATED == "TRUE" ? true : false;
+        private string _WORK_ZONE_RELATED;
+        public string WORK_ZONE_RELATED
+        {
+            get
+            {
+                WORK_ZONE_BOOL = _WORK_ZONE_RELATED == "True" ? true : false;
+                return _WORK_ZONE_RELATED;
+            }
+            set
+            {
+                _WORK_ZONE_RELATED = value;
+                WORK_ZONE_BOOL = _WORK_ZONE_RELATED == "True" ? true : false;
+            }
+        }
+        [NotMapped]
+        public bool WORK_ZONE_BOOL { get; set; }
 
     }
 }
