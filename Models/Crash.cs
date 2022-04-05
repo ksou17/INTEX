@@ -43,5 +43,6 @@ namespace INTEX.Models
         public DateTime CRASH_DATE => DateTime.Parse(CRASH_DATETIME);
         [NotMapped]
         public bool WORK_ZONE_BOOL => WORK_ZONE_RELATED == "TRUE" ? true : false;
+
     }
 }

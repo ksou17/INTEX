@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace INTEX.Controllers
 {
@@ -25,26 +26,195 @@ namespace INTEX.Controllers
         public IActionResult Index(string city=" ")
         {
             ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
-            ViewBag.TableInfo = _context.crashes.ToList();
+            List <Crash> TableInfo = _context.crashes.Where(c => c.CITY == city).ToList();
             ViewBag.selectedCity = city;
+            ViewBag.TableInfo = TableInfo;
 
-            //int total_WZR = 0;
-            //foreach (var w in ViewBag.TableInfo)
-            //{
-               
+            var wzr = new Dictionary<string, int>();
 
-            //    if (w.WORK_ZONE_RELATED == 1)
-            //    {
-            int total_WZR = 0;
-            foreach (var w in ViewBag.TableInfo)
+            foreach (var t in TableInfo)
             {
-                if (w.WORK_ZONE_BOOL == true)
+                if (t.WORK_ZONE_BOOL == true)
                 {
+                    if (wzr.ContainsKey("Work Zone Related"))
+                    {
+                        wzr["Work Zone Related"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Work Zone Related", 1);
+                    }
+                }
 
-            //        total_WZR += 1;
-            //        ViewBag.WZR = total_WZR;
-            //    }
-            //}
+                if (t.PEDESTRIAN_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Pedestrian Involved"))
+                    {
+                        wzr["Pedestrian Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Pedestrian Involved", 1);
+                    }
+                }
+
+                if (t.BICYCLIST_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Bicyclist Involved"))
+                    {
+                        wzr["Bicyclist Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Bicyclist Involved", 1);
+                    }
+                }
+
+                if (t.MOTORCYCLE_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Motorcycle Involved"))
+                    {
+                        wzr["Motorcycle Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Motorcycle Involved", 1);
+                    }
+                }
+
+                
+
+                if (t.DUI == true)
+                {
+                    if (wzr.ContainsKey("DUI"))
+                    {
+                        wzr["DUI"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("DUI", 1);
+                    }
+                }
+
+                if (t.INTERSECTION_RELATED == true)
+                {
+                    if (wzr.ContainsKey("Intersection Related"))
+                    {
+                        wzr["Intersection Related"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Intersection Related", 1);
+                    }
+                }
+
+                if (t.WILD_ANIMAL_RELATED == true)
+                {
+                    if (wzr.ContainsKey("Wild Animal Related"))
+                    {
+                        wzr["Wild Animal Related"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Wild Animal Related", 1);
+                    }
+                }
+
+                if (t.DOMESTIC_ANIMAL_RELATED == true)
+                {
+                    if (wzr.ContainsKey("Domestic Animal Related"))
+                    {
+                        wzr["Domestic Animal Related"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Domestic Animal Related", 1);
+                    }
+                }
+
+                if (t.COMMERCIAL_MOTOR_VEH_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Commercial Motor Vehicle Involved"))
+                    {
+                        wzr["Commercial Motor Vehicle Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Commercial Motor Vehicle Involved", 1);
+                    }
+                }
+
+                if (t.TEENAGE_DRIVER_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Teenage Driver Involved"))
+                    {
+                        wzr["Teenage Driver Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Teenage Driver Involved", 1);
+                    }
+                }
+
+                if (t.OLDER_DRIVER_INVOLVED == true)
+                {
+                    if (wzr.ContainsKey("Older Driver Involved"))
+                    {
+                        wzr["Older Driver Involved"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Older Driver Involved", 1);
+                    }
+                }
+
+                if (t.NIGHT_DARK_CONDITION == true)
+                {
+                    if (wzr.ContainsKey("Night/Dark Conditions"))
+                    {
+                        wzr["Night/Dark Conditions"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Night/Dark Conditions", 1);
+                    }
+                }
+
+                if (t.DISTRACTED_DRIVING == true)
+                {
+                    if (wzr.ContainsKey("Distracted Driving"))
+                    {
+                        wzr["Distracted Driving"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Distracted Driving", 1);
+                    }
+                }
+
+                if (t.DROWSY_DRIVING == true)
+                {
+                    if (wzr.ContainsKey("Drowsy Driving"))
+                    {
+                        wzr["Drowsy Driving"] += 1;
+                    }
+                    else
+                    {
+                        wzr.Add("Drowsy Driving", 1);
+                    }
+                }
+
+                
+            }
+
+            
+            IEnumerable<KeyValuePair<string, int>> returnable = wzr.OrderBy(key => key.Value).Take(5);
+            ViewBag.top5 = returnable;
+            
+
+            //ViewBag.selectedCity = ViewBag.selectedCity.ToLower();
+
+
             return View();
         }
         public IActionResult Prevention()
