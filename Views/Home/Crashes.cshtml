@@ -165,15 +165,18 @@
                                     </ul>
                                     <button onclick="hideRow(@crash.CRASH_ID)" class="btn btn-secondary">Close Details</button>
                                 </div>
-                                <div>
-                                    <form method="get" asp-action="Edit" asp-controller="Home">
-                                        <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
-                                        <input type="submit" value="submit" class="btn btn-primary" />
-                                    </form>
-                                    <form method="post" asp-action="Delete" asp-controller="Home">
-                                        <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)"/>
-                                        <input type="submit" value="submit" class="btn btn-danger"/>
-                                    </form>
+                                <div class="flex-1">
+                                    <h4>Administrative Actions</h4>
+                                    <div class="flex-2">
+                                        <form method="get" asp-action="Edit" asp-controller="Home">
+                                            <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
+                                            <input type="submit" value="Edit Crash" class="btn btn-primary" />
+                                        </form>
+                                        <form method="post" asp-action="Delete" asp-controller="Home">
+                                            <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
+                                            <input type="submit" value="Delete Crash Record" class="btn btn-danger" />
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </td>
