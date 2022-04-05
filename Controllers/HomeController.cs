@@ -44,6 +44,11 @@ namespace INTEX.Controllers
             return View();
         }
 
+        public IActionResult Severity()
+        {
+            return View();
+        }
+
         public IActionResult Crashes(int page = 1, string date = "", string time = "", string city = " ", string county="", int severity = -1)
         {
             var crashes = _context.crashes.AsQueryable();
