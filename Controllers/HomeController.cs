@@ -52,6 +52,7 @@ namespace INTEX.Controllers
             {
                 DateTime comparison = DateTime.Parse(date).Date;
                 crashes = crashes.ToList().Where(c => c.CRASH_DATE.Date == comparison).AsQueryable();
+                ViewBag.selectedDate = comparison;
             }
             if (city != null && city != " " && crashes.Count() > 0)
             {
@@ -96,18 +97,56 @@ namespace INTEX.Controllers
             return RedirectToAction("Crashes");
         }
         [HttpGet]
-        public IActionResult Edit(int CRASH_ID)
+        public IActionResult Edit(int CRASH_ID = -1)
         {
-            Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
             ViewBag.severity = _context.crashes.Select(c => c.CRASH_SEVERITY_ID).Distinct().OrderBy(c => c);
             ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct().OrderBy(c => c);
             ViewBag.counties = _context.crashes.Select(c => c.COUNTY_NAME).Distinct().OrderBy(c => c);
-            ViewBag.function = "edit";
-            return View(crash);
+            if (CRASH_ID != -1)
+            {
+                Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
+                ViewBag.function = "edit";
+                return View(crash);
+            }
+            else
+            {
+                Crash crash = new Crash();
+                crash.CRASH_DATETIME = DateTime.Today.ToShortDateString();
+                ViewBag.function = "add";
+                return View(crash);
+            }
+
         }
         [HttpPost]
-        public IActionResult Edit(Crash crash)
+        public IActionResult Edit(Crash crash, string workZone)
         {
+            if (workZone == "on")
+            {
+                crash.WORK_ZONE_RELATED = "True";
+            }
+            else
+            {
+                crash.WORK_ZONE_RELATED = "False";
+            }
+
+            _context.crashes.Update(crash);
+            _context.SaveChanges();
+
+            return RedirectToAction("Crashes");
+        }
+        public IActionResult Add(Crash crash, string workZone)
+        {
+            if (workZone == "on")
+            {
+                crash.WORK_ZONE_RELATED = "True";
+            }
+            else
+            {
+                crash.WORK_ZONE_RELATED = "False";
+            }
+
+            _context.crashes.Add(crash);
+            _context.SaveChanges();
             return RedirectToAction("Crashes");
         }
     }
