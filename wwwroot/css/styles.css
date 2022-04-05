@@ -23,26 +23,9 @@
 
 }
 
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-.text-block {
-    position: absolute;
-    bottom: 300px;
-    left: 150px;
-    background-color: black;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 8px;
-    opacity: 0.6;
-    
-}
+
+
 
 .container {
     position: relative;
@@ -52,12 +35,7 @@
 
 
 
-.banner {
-    width: 100%;
-    z-index: auto;
-    margin: 0;
-    padding: 0;
-}
+
 
 .cen {
     position: relative;
