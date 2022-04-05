@@ -39,12 +39,19 @@ namespace INTEX.Controllers
 
                     if((await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Home/Prevention");
+                        return Redirect(loginModel?.ReturnUrl ?? "/Home/Index");
                     }
                 }   
             }
             ModelState.AddModelError("", "Invalid Username or Password");
             return View(loginModel);
+        }
+
+        public async Task<RedirectResult> Logout (string returnUrl = "/account/login")
+        {
+            await signInManager.SignOutAsync();
+
+            return Redirect(returnUrl);
         }
     }
 }
