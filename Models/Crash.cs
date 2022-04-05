@@ -12,6 +12,7 @@ namespace INTEX.Models
         [Key]
         [Required]
         public int CRASH_ID { get; set; }
+        [Required]
         public string CRASH_DATETIME { get; set; }
         public string ROUTE { get; set; }
         public double MILEPOINT { get; set; }

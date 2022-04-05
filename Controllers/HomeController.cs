@@ -23,7 +23,7 @@ namespace INTEX.Controllers
 
         public IActionResult Index(string city)
         {
-            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
+            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct().OrderBy(c => c);
             ViewBag.TableInfo = _context.crashes.ToList();
             ViewBag.SelectedCity = city;
 
@@ -74,8 +74,8 @@ namespace INTEX.Controllers
                 ViewBag.crashes = new List<Crash>();
             }
             
-            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
-            ViewBag.counties = _context.crashes.Select(c => c.COUNTY_NAME).Distinct();
+            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct().OrderBy(c => c);
+            ViewBag.counties = _context.crashes.Select(c => c.COUNTY_NAME).Distinct().OrderBy(c => c);
             ViewBag.severity = _context.crashes.Select(c => c.CRASH_SEVERITY_ID).Distinct();
             ViewBag.page = page;
             ViewBag.totalPages = (crashes.ToList().Count()) / 10 != 0 ? (crashes.ToList().Count()) / 10 : 1;
@@ -100,8 +100,17 @@ namespace INTEX.Controllers
         [HttpGet]
         public IActionResult Edit(int CRASH_ID)
         {
-            ViewBag.crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
-            return View();
+            Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
+            ViewBag.severity = _context.crashes.Select(c => c.CRASH_SEVERITY_ID).Distinct().OrderBy(c => c);
+            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct().OrderBy(c => c);
+            ViewBag.counties = _context.crashes.Select(c => c.COUNTY_NAME).Distinct().OrderBy(c => c);
+            ViewBag.function = "edit";
+            return View(crash);
+        }
+        [HttpPost]
+        public IActionResult Edit(Crash crash)
+        {
+            return RedirectToAction("Crashes");
         }
     }
 }
