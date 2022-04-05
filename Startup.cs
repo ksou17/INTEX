@@ -2,6 +2,7 @@ using INTEX.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,13 @@ namespace INTEX
                         maxRetryDelay: TimeSpan.FromSeconds(30),
                         errorNumbersToAdd: null));
             });
+
+            services.AddDbContext<IdentityDbContext>(options => {
+                options.UseMySql(Configuration.GetConnectionString("IdentityDB"));
+        });
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +62,7 @@ namespace INTEX
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -62,6 +71,9 @@ namespace INTEX
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
