@@ -21,11 +21,12 @@ namespace INTEX.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string city)
+        [HttpGet]
+        public IActionResult Index(string city=" ")
         {
             ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
             ViewBag.TableInfo = _context.crashes.ToList();
-            ViewBag.SelectedCity = city;
+            ViewBag.selectedCity = city;
 
             int total_WZR = 0;
             foreach (var w in ViewBag.TableInfo)
