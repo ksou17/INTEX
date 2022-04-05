@@ -33,7 +33,13 @@
 
 
 
+.trans {
+    text-transform: lowercase;
+}
 
+.trans2 {
+    text-transform: uppercase;
+}
 
 
 
@@ -42,4 +48,20 @@
     right: 500px;
     left: 160px;
     padding-right:290px;
+}
+
+.display-flex{
+    display:flex;
+    justify-content:center;
+    flex-direction:row;
+    width:40%;
+}
+.center {
+    
+    list-style-position: inside;
+}
+
+ol.center li {
+    text-align: left;
+    margin-left: 40%;
 }
