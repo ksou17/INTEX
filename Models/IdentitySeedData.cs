@@ -12,7 +12,7 @@ namespace INTEX.Models
     public static class IdentitySeedData
     {
         private const string adminUser = "admin";
-        private const string adminPassword = "adminadmin";
+        private const string adminPassword = "Adminadmin123!";
 
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
@@ -36,7 +36,7 @@ namespace INTEX.Models
                 user = new IdentityUser(adminUser);
                 user.Email = "admin@gmail.com";
                 user.PhoneNumber = "801-222-3333";
-                await userManager.CreateAsync(user, adminPassword);
+                var results = await userManager.CreateAsync(user, adminPassword);
             }
         }
     }

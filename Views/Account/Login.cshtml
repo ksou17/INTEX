@@ -7,20 +7,22 @@
 <div class="m-1 p-1">
 
     <div class="text-danger" asp-validation-summary="All"></div>
-    <form method="post" asp-action="Login">
+    <form method="post" asp-controller="Account" asp-action="Login">
         <div class="form-group">
-            <label>User Name:</label>
-            <input class="form-control" placeholder="Username" />
+            <label asp-for="Username">User Name:</label>
+            <input asp-for="Username" class="form-control" placeholder="Username" />
 
         </div>
 
         <div class="form-group">
-            <label>Password:</label>
-            <input class="form-control" type="password" placeholder="Password" />
+            <label asp-for="Password">Password:</label>
+            <input asp-for="Password" class="form-control" type="password" placeholder="Password" />
 
         </div>
 
         <button class="btn btn-info" type="submit">Login</button>
+        <input type="hidden" asp-for="ReturnUrl" />
+
 
         <br />
         <br />

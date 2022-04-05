@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
 <!DOCTYPE html>
 <link href="~/css/site.css" rel="stylesheet" />
 <script src="~/js/site.js"></script>
@@ -37,11 +39,21 @@
                 </ul>
 
             </div>
-            <a class="btn btn-secondary float-right" asp-action="Login">Login</a>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-secondary float-right" href="/account/logout">Log Out</a>
+
+                    }
+            else
+            {
+                 <a class="btn btn-secondary float-right" asp-controller="Account" asp-action="Login">Login</a>
+            }
+            
         </nav>
     </header>
-        
-    
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
