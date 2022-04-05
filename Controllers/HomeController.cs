@@ -21,8 +21,24 @@ namespace INTEX.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string city)
         {
+            ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
+            ViewBag.TableInfo = _context.crashes.ToList();
+            ViewBag.SelectedCity = city;
+
+            int total_WZR = 0;
+            foreach (var w in ViewBag.TableInfo)
+            {
+               
+
+                if (w.WORK_ZONE_RELATED == 1)
+                {
+
+                    total_WZR += 1;
+                    ViewBag.WZR = total_WZR;
+                }
+            }
             return View();
         }
         public IActionResult Prevention()

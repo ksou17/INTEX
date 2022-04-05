@@ -3,17 +3,24 @@
 .red {
     background: #8f2715;
     color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Dubai;
+    font-weight: bolder;
     overflow: hidden;
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding-top:14px;
-    padding-bottom:13px;
-    padding-right:29px;
-    padding-left:20px;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    padding-right: 29px;
+    padding-left: 20px;
     text-decoration: none;
     font-size: 19px;
+}
+
+.goth {
+    font-family: Dubai;
+    font-weight:bolder;
+
 }
 
 .centered {
@@ -25,8 +32,8 @@
 
 .text-block {
     position: absolute;
-    bottom: 370px;
-    left: 20px;
+    bottom: 300px;
+    left: 150px;
     background-color: black;
     color: white;
     padding-left: 20px;
@@ -34,20 +41,31 @@
     padding-top: 10px;
     padding-bottom: 8px;
     opacity: 0.6;
+    
 }
 
 .container {
     position: relative;
 }
 
-.img {
-    margin:0;
-    padding:0;
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
 }
 
-
-#banner {
-    /* The image used */
-    background-image: url(../img/crashimage2_cropped.jpg);
+.banner {
+    width: 100%;
+    z-index: auto;
+    margin: 0;
+    padding: 0;
 }
 
+.cen {
+    position: relative;
+    right: 500px;
+    left: 160px;
+    padding-right:290px;
+}
