@@ -102,3 +102,14 @@ body {
 .table-striped-custom tr:nth-child(4n+1) {
     background-color: #F3F3F2;
 }
+.mega-ultimate-super-edit-div {
+    display: flex;
+    flex-direction: row;
+}
+.mega-ultimate-super-edit-div div {
+    width: 50%;
+}
+.editForm {
+    display: flex;
+    flex-direction: column;
+}
