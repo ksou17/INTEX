@@ -4,12 +4,12 @@
 @{
 }
 
-<div class="main-container">
+<div>
     <h3 class="text-center">Filter Crashes</h3>
     <form method="get" asp-controller="Home" asp-action="Crashes" class="filter-whole-form" id="crash-filter-form">
         <div class="filter-form">
             <input type="hidden" name="page" id="pageNumber"/>
-            <input placeholder="Date" type="date" name="date" />
+            <input placeholder="Date" type="date" name="date" value="@ViewBag.selectedDate?.ToString("yyyy-MM-dd")"/>
             <input placeholder="Time" />
             <select name="city">
                 <option selected value="">-- Select A City --</option>
@@ -55,6 +55,7 @@
             </select>
         </div>
         <div class="text-center mt-2">
+            <a asp-controller="Home" asp-action="Edit">Add New Accident</a>
             <input class="btn btn-primary" type="submit" value="Submit" />
         </div>
     </form>
@@ -86,7 +87,7 @@
                             <div class="mega-ultimate-super-edit-div">
                                 <div>
                                     <ul>
-                                        @if (crash.WORK_ZONE_BOOL)
+                                        @if (crash.WORK_ZONE_RELATED == "True")
                                         {
                                             <li>Crash occured in a work zone.</li>
                                         }
