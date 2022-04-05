@@ -21,11 +21,12 @@ namespace INTEX.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string city)
+        [HttpGet]
+        public IActionResult Index(string city=" ")
         {
             ViewBag.cities = _context.crashes.Select(c => c.CITY).Distinct();
             ViewBag.TableInfo = _context.crashes.ToList();
-            ViewBag.SelectedCity = city;
+            ViewBag.selectedCity = city;
 
             //int total_WZR = 0;
             //foreach (var w in ViewBag.TableInfo)
@@ -34,6 +35,11 @@ namespace INTEX.Controllers
 
             //    if (w.WORK_ZONE_RELATED == 1)
             //    {
+            int total_WZR = 0;
+            foreach (var w in ViewBag.TableInfo)
+            {
+                if (w.WORK_ZONE_BOOL == true)
+                {
 
             //        total_WZR += 1;
             //        ViewBag.WZR = total_WZR;
@@ -89,6 +95,20 @@ namespace INTEX.Controllers
 
         public IActionResult Login()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Delete(int CRASH_ID)
+        {
+            Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
+            _context.crashes.Remove(crash);
+            _context.SaveChanges();
+            return RedirectToAction("Crashes");
+        }
+        [HttpGet]
+        public IActionResult Edit(int CRASH_ID)
+        {
+            ViewBag.crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
             return View();
         }
     }

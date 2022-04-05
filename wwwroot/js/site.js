@@ -15,3 +15,7 @@ function pageBackwards(pageNum) {
 function revealRow(id) {
     document.getElementById("hiddenRow" + id).hidden= false
 }
+
+function hideRow(id) {
+    document.getElementById("hiddenRow" + id).hidden = true
+}

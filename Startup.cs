@@ -27,7 +27,12 @@ namespace INTEX
         {
             services.AddControllersWithViews();
             services.AddDbContext<DBContext>(options => {
-                options.UseMySql(Configuration.GetConnectionString("CrashDB"));
+                options.UseMySql(Configuration.GetConnectionString("CrashDB"),
+                mySqlOptions =>
+                    mySqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null));
             });
         }
 

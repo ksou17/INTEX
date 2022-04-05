@@ -10,30 +10,56 @@
 <center><h1 class="goth">Are you safe on the  roads in Utah?</h1></center>
 <div class="cen">
     <p>In 2021, 320 people died on Utah roadways. State troopers believe that 90% of these crashes could have been prevented. Learn about the risks of driving in your city in Utah, and ways to prevent you and your loved ones from getting in these accidents.</p>
-    <a style="font-size:smaller" class="float-right" href="https://www.usnews.com/news/best-states/utah/articles/2022-01-08/roadway-deaths-in-utah-hit-nearly-20-year-high-last-year#:~:text=Data%20from%20the%20Utah%20Department,on%20Utah%20roadways%20in%202021." >Source</a>
+    <a style="font-size:smaller" class="float-right" href="https://www.usnews.com/news/best-states/utah/articles/2022-01-08/roadway-deaths-in-utah-hit-nearly-20-year-high-last-year#:~:text=Data%20from%20the%20Utah%20Department,on%20Utah%20roadways%20in%202021.">Source</a>
 </div>
 
-<center>
-    <div>
-        <label><bold>City:</bold></label>
-        <select name="city">
-            <option selected value="">-- Select A City --</option>
-            @foreach (var city in ViewBag.cities)
-            {
-                if (city == ViewBag.selectedCity)
+<form method="get" asp-controller="Home" asp-action="Index">
+    <center>
+        <div>
+            <label><bold>City:</bold></label>
+            <select name="city">
+                <option selected value="">-- Select A City --</option>
+                @foreach (var city in ViewBag.cities)
                 {
-                    <option selected value="@city">@city</option>
+                    if (city == ViewBag.selectedCity)
+                    {
+                        <option selected value="@city">@city</option>
+                        //@ViewBag.selectedCity = city;
+                    }
+                    else
+                    {
+                        <option value="@city">@city</option>
+                    }
                 }
-                else
-                {
-                    <option value="@city" asp-route-city="@city">@city</option>
-                }
-            }
-        </select>
-    </div>
-</center>
+            </select>
 
-<h3>Top 5 Causes of accidents in @ViewBag.SelectedCity</h3>
+
+        </div>
+    </center>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (ViewBag.selectedCity != " " && ViewBag.selectedCity != null)
+{
+    <h3>Top 5 Causes of accidents in @ViewBag.SelectedCity</h3>
+
+}
+
+
 
 
 
