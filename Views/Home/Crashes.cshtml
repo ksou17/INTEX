@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Crashes";
 }
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
@@ -191,7 +192,7 @@
                                                 <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
                                                 <input type="submit" value="Edit Crash" class="btn btn-primary" />
                                             </form>
-                                            <form method="post" asp-action="Delete" asp-controller="Home">
+                                            <form method="get" asp-action="Delete" asp-controller="Home">
                                                 <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
                                                 <input type="submit" value="Delete Crash Record" class="btn btn-danger" />
                                             </form>

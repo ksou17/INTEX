@@ -13,6 +13,8 @@ namespace INTEX.Models
     {
         private const string adminUser = "admin";
         private const string adminPassword = "Adminadmin123!";
+        private const string adminEmail = "admin@gmail.com";
+        private const string adminPhone = "801-555-3333";
 
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
@@ -31,11 +33,13 @@ namespace INTEX.Models
 
             IdentityUser user = await userManager.FindByIdAsync(adminUser);
 
+
+
             if (user == null)
             {
                 user = new IdentityUser(adminUser);
-                user.Email = "admin@gmail.com";
-                user.PhoneNumber = "801-222-3333";
+                user.Email = adminEmail;
+                user.PhoneNumber = adminPhone;
                 var results = await userManager.CreateAsync(user, adminPassword);
             }
         }

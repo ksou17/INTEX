@@ -11,6 +11,6 @@
     <button class="btn btn-danger" type="submit">Delete</button>
     <a class="btn btn-secondary" asp-controller="Home" asp-action="Crashes">Cancel</a>
 
-    <input type="hidden" asp-for="CRASH_ID" />
+    <input type="hidden" name="crashID" value="@Model.CRASH_ID" />
     
 </form>
