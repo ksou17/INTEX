@@ -3,7 +3,7 @@
 .red {
     background: #8f2715;
     color: white;
-    font-family: Dubai;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: bolder;
     overflow: hidden;
     float: left;
@@ -18,9 +18,8 @@
 }
 
 .goth {
-    font-family: Dubai;
-    font-weight:bolder;
-
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: bolder;
 }
 
 
@@ -45,11 +44,34 @@
 
 .cen {
     position: relative;
-    right: 500px;
-    left: 160px;
-    padding-right:290px;
+    /*right: 0px;*/
+    left: 0px;
+    text-align:center;
+    padding-right:0px;
 }
 
+.pad {
+    margin-top:30px;
+}
+
+.pad2 {
+    margin-top: 30px;
+}
+
+.pad3 {
+    margin-top: 35px;
+}
+
+.pad4 {
+    margin-top: 60px;
+}
+.bigfont{
+    font-size:20px;
+}
+
+.medfont {
+    font-size: 18px;
+}
 .display-flex{
     display:flex;
     justify-content:center;
@@ -64,4 +86,50 @@
 ol.center li {
     text-align: left;
     margin-left: 40%;
+}
+
+.redcolor {
+    background: #8f2715;
+    color:white;
+}
+
+header.masthead {
+    padding-top: 10.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    color: #fff;
+    background-image: url("../img/crashimage2_overlay2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    width:100%;
+}
+
+    header.masthead .masthead-subheading {
+        font-size: 1.5rem;
+        /*font-style: ;*/
+        line-height: 1.5rem;
+        margin-bottom: 25px;
+        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+header.masthead .masthead-heading {
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 3.25rem;
+    margin-bottom: 2rem;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.img-fluid{
+    max-width:100%;
+    height:auto;
+}
+
+.pic {
+    height:200px;
+    width:200px;
+    margin-right:80px;
+    padding-left:10px
 }
