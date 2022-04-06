@@ -3,13 +3,15 @@
 *@
 @{
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
 <div>
     <h3 class="text-center">Filter Crashes</h3>
     <form method="get" asp-controller="Home" asp-action="Crashes" class="filter-whole-form" id="crash-filter-form">
         <div class="filter-form">
-            <input type="hidden" name="page" id="pageNumber"/>
-            <input placeholder="Date" type="date" name="date" value="@ViewBag.selectedDate?.ToString("yyyy-MM-dd")"/>
+            <input type="hidden" name="page" id="pageNumber" />
+            <input placeholder="Date" type="date" name="date" value="@ViewBag.selectedDate?.ToString("yyyy-MM-dd")" />
             <input placeholder="Time" />
             <select name="city">
                 <option selected value="">-- Select A City --</option>
@@ -54,10 +56,23 @@
                 }
             </select>
         </div>
-        <div class="text-center mt-2">
-            <a asp-controller="Home" asp-action="Edit" class="btn btn-primary">Add New Accident</a>
-            <input class="btn btn-primary" type="submit" value="Submit" />
-        </div>
+
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="text-center mt-2">
+                <a asp-controller="Home" asp-action="Edit">Add New Accident</a>
+                <input class="btn btn-primary" type="submit" value="Submit" />
+            </div>
+        }
+        else
+        {
+            <div class="text-center mt-2">
+                <input class="btn btn-primary" type="submit" value="Submit" />
+            </div>
+        }
+
+
     </form>
     <div>
         <table class="table table-striped-custom table-bordered">
@@ -166,20 +181,24 @@
                                     </ul>
                                     <button onclick="hideRow(@crash.CRASH_ID)" class="btn btn-secondary">Close Details</button>
                                 </div>
-                                <div class="flex-1">
-                                    <h4>Administrative Actions</h4>
-                                    <div class="flex-2">
-                                        <form method="get" asp-action="Edit" asp-controller="Home">
-                                            <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
-                                            <input type="submit" value="Edit Crash" class="btn btn-primary" />
-                                        </form>
-                                        <form method="post" asp-action="Delete" asp-controller="Home">
-                                            <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
-                                            <input type="submit" value="Delete Crash Record" class="btn btn-danger" />
-                                        </form>
+
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <div class="flex-1">
+                                        <h4>Administrative Actions</h4>
+                                        <div class="flex-2">
+                                            <form method="get" asp-action="Edit" asp-controller="Home">
+                                                <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
+                                                <input type="submit" value="Edit Crash" class="btn btn-primary" />
+                                            </form>
+                                            <form method="post" asp-action="Delete" asp-controller="Home">
+                                                <input type="hidden" name="CRASH_ID" value="@(crash.CRASH_ID)" />
+                                                <input type="submit" value="Delete Crash Record" class="btn btn-danger" />
+                                            </form>
+                                        </div>
                                     </div>
+                                }
                                 </div>
-                            </div>
                         </td>
                     </tr>
                 }
