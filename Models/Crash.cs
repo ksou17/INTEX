@@ -15,11 +15,17 @@ namespace INTEX.Models
         [Required]
         public string CRASH_DATETIME { get; set; }
         public string ROUTE { get; set; }
+        [Required(ErrorMessage = "Please enter a mile point.")]
         public double MILEPOINT { get; set; }
+        [Required(ErrorMessage ="Please enter a latitude.")]
         public string LAT_UTM_Y { get; set; }
+        [Required(ErrorMessage = "Please enter a longitude.")]
         public string LONG_UTM_X { get; set; }
+        [Required]
         public string CITY { get; set; }
+        [Required]
         public string COUNTY_NAME { get; set; }
+        [Required]
         public int CRASH_SEVERITY_ID { get; set; }
         public bool PEDESTRIAN_INVOLVED { get; set; }
         public bool BICYCLIST_INVOLVED { get; set; }
@@ -38,6 +44,7 @@ namespace INTEX.Models
         public bool SINGLE_VEHICLE { get; set; }
         public bool DISTRACTED_DRIVING { get; set; }
         public bool DROWSY_DRIVING { get; set; }
+
         public bool ROADWAY_DEPARTURE { get; set; }
         [NotMapped]
         public DateTime CRASH_DATE => DateTime.Parse(CRASH_DATETIME);
