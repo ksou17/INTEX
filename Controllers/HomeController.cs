@@ -264,16 +264,17 @@ namespace INTEX.Controllers
             return View();
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //public IActionResult Delete(int CRASH_ID)
+        //{
+        //    Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
+        //    return View(crash);
+        //}
+        [HttpPost]
         public IActionResult Delete(int CRASH_ID)
         {
             Crash crash = _context.crashes.First(c => c.CRASH_ID == CRASH_ID);
-            return View(crash);
-        }
-        [HttpPost]
-        public IActionResult Delete(Crash c)
-        {
-            _context.crashes.Remove(c);
+            _context.crashes.Remove(crash);
             _context.SaveChanges();
             return RedirectToAction("Crashes");
         }
