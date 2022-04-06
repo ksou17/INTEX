@@ -32,7 +32,7 @@ namespace INTEX.Controllers
             if (ModelState.IsValid)
             {
                 IdentityUser user = await userManager.FindByNameAsync(loginModel.Username);
-
+                
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
@@ -41,6 +41,7 @@ namespace INTEX.Controllers
                     {
                         return Redirect(loginModel?.ReturnUrl ?? "/Home/Index");
                     }
+                       
                 }   
             }
             ModelState.AddModelError("", "Invalid Username or Password");
